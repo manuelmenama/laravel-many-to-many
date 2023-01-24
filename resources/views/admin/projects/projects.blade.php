@@ -39,6 +39,8 @@
                 <th scope="col"><a href="{{ route('admin.projects.orderby', ['id', $direction]) }}">#</a></th>
                 <th scope="col"><a href="{{ route('admin.projects.orderby', ['name', $direction]) }}">Project Name</a></th>
                 <th scope="col"><a href="{{ route('admin.projects.orderby', ['client_name', $direction]) }}">Client</a></th>
+                <th scope="col">Tecnology</th>
+                he
                 <th scope="col">Actions</th>
               </tr>
             </thead>
@@ -48,6 +50,13 @@
                     <td>{{$project->id}}</td>
                     <td>{{$project->name}} <span class="badge text-bg-info">{{ $project->type?->name }}</span></td>
                     <td>{{$project->client_name}}</td>
+                    <td>
+                        @forelse ($project->tecnologies as $tecnology)
+                        <span class="badge text-bg-warning">{{ $tecnology->name }}</span>
+                        @empty
+                            - nd -
+                        @endforelse
+                    </td>
                     <td class="d-flex">
                         <a href="{{ route('admin.project.show', $project) }}" class="btn btn-primary me-2"><i class="fa-solid fa-eye"></i></a>
                         <a href="{{ route('admin.project.edit', $project) }}" class="btn btn-warning me-2"><i class="fa-solid fa-pencil"></i></a>
