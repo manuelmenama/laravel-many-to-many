@@ -59,6 +59,26 @@
 
               </select>
         </div>
+
+        <div class="mb-3">
+            <p>Used tecnologies</p>
+
+            @foreach ($tecnologies as $tecnology)
+                <input
+                    id="tec{{$loop->iteration}}"
+                    type="checkbox"
+                    name="tecnologies[]"
+                    value="{{$tecnology->id}}"
+                    @if (!$errors->all() && $project->tecnologies->contains($tecnology))
+                        checked
+                    @elseif ($errors->all() && in_array($tecnology->id, old('tecnologies',[])))
+                        checked
+                    @endif>
+                <label class="me-2" for="tec{{$loop->iteration}}">{{$tecnology->name}}</label>
+            @endforeach
+
+        </div>
+
         <div class="mb-3">
             <label for="cover_image" class="form-label">Cover image</label>
             <input
