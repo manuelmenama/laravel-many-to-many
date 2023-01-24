@@ -16,6 +16,13 @@
         <h2>{{ $project->name }}</h2>
         @if($project->type)
         <h6>Categoria: <span class="badge bg-info">{{ $project->type->name }}</span></h6>
+        @if ($project->tecnologies)
+            @foreach ($project->tecnologies as $tecnology)
+
+            <span class="badge text-bg-warning">{{ $tecnology->name }}</span>
+
+            @endforeach
+        @endif
         @endif
         <ul>
             <li>

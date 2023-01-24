@@ -42,6 +42,7 @@
                 <p class="invalid-feedback">{{ $message }}</p>
             @enderror
         </div>
+
         <div class="mb-3">
             <label for="type" class="form-label">Select type</label>
             <select class="form-select" aria-label="Default select example" id="type" name="type_id">
@@ -57,6 +58,23 @@
                 @endforeach
 
               </select>
+        </div>
+
+        <div class="mb-3">
+            <p>Used tecnologies</p>
+
+            @foreach ($tecnologies as $tecnology)
+                <input
+                    id="tec{{$loop->iteration}}"
+                    type="checkbox"
+                    name="tecnologies[]"
+                    value="{{$tecnology->id}}"
+                    @if (in_array($tecnology->id, old('tecnologies',[])))
+                        checked
+                    @endif>
+                <label class="me-2" for="tec{{$loop->iteration}}">{{$tecnology->name}}</label>
+            @endforeach
+
         </div>
 
         <div class="mb-3">

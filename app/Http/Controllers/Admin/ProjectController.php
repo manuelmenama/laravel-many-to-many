@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
+use App\Models\Tecnology;
 use App\Models\Type;
 use Illuminate\Support\Facades\Storage;
 use Psy\CodeCleaner\ReturnTypePass;
@@ -44,7 +45,8 @@ class ProjectController extends Controller
     {
 
         $types = Type::all();
-        return view('admin.projects.create', compact('types'));
+        $tecnologies = Tecnology::all();
+        return view('admin.projects.create', compact('types', 'tecnologies'));
     }
 
     /**
@@ -71,6 +73,10 @@ class ProjectController extends Controller
         $new_project->fill($project_data);
         $new_project->save();
         //$new_project = Project::create($project_data);
+
+        if(array_key_exists('tecnologies', $project_data)){
+            $new_project->tecnologies()->attach($project_data['tecnologies']);
+        }
 
         return redirect()->route('admin.project.show', $new_project)->with('message', "Progetto inserito correttamente");
     }
