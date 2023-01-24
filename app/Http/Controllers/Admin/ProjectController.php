@@ -36,6 +36,11 @@ class ProjectController extends Controller
         return view('admin.projects.projects', compact('projects', 'direction'));
     }
 
+    public function project_type(){
+        $types = Type::all();
+        return view('admin.projects.list_type_project', compact('types'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
