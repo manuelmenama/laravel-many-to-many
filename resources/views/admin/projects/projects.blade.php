@@ -40,7 +40,6 @@
                 <th scope="col"><a href="{{ route('admin.projects.orderby', ['name', $direction]) }}">Project Name</a></th>
                 <th scope="col"><a href="{{ route('admin.projects.orderby', ['client_name', $direction]) }}">Client</a></th>
                 <th scope="col">Tecnology</th>
-                he
                 <th scope="col">Actions</th>
               </tr>
             </thead>

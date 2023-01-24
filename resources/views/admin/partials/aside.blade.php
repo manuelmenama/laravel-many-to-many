@@ -9,6 +9,9 @@
         <li class="my-li-item {{ Route::currentRouteName() === 'admin.project_type' ? 'active' : '' }}">
             <a href="{{ route('admin.project_type') }}"><i class="fa-regular fa-flag me-1 ms-2 mb-3"></i>Type/Project</a>
         </li>
+        <li class="my-li-item {{ Route::currentRouteName() === 'admin.types.index' ? 'active' : '' }}">
+            <a href="{{ route('admin.types.index') }}"><i class="fa-regular fa-folder me-1 ms-2 mb-3"></i>Type Edit</a>
+        </li>
         <li class="my-li-item {{ Route::currentRouteName() === 'admin.project.create' ? 'active' : '' }}">
             <a href="{{ route('admin.project.create') }}"><i class="fa-solid fa-plus me-1 ms-2 mb-3"></i>Add Project</a>
         </li>

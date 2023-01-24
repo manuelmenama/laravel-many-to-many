@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Guest\PageController;
 use App\Http\Controllers\ProfileController;
 use Faker\Guesser\Name;
@@ -33,7 +34,7 @@ Route::middleware(['auth', 'verified'])
     Route::get('project/project_type', [ProjectController::class, 'project_type'])->name('project_type');
     Route::resource('project', ProjectController::class);
     Route::get('post/orderby/{column}/{direction}', [ProjectController::class, 'orderby'])->name('projects.orderby');
-    //Route::get('post/search', [ProjectController::class, 'search'])->name('post.search');
+    Route::resource('types', TypeController::class)->except(['show', 'create', 'edit']);
 });
 
 Route::middleware('auth')->group(function () {
