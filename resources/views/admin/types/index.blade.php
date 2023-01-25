@@ -20,15 +20,21 @@
     <table class="table w-50">
         <thead>
             <tr>
-                <th scope="col">Type name</th>
-                <th scope="col">Action</th>
+                <th scope="col">Type Edit</th>
                 <th scope="col">Project count</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($types as $type)
                 <tr>
-                    <td>{{$type->name}}</td>
+                    <td>
+                        <form action="{{route('admin.types.update', $type)}}" method="POST" class="d-flex">
+                            @csrf
+                            @method('PATCH')
+                            <input type="text" class="form-control border-0 me-2" value="{{$type->name}}">
+                            <button type="submit" class="btn btn-warning me-2"><i class="fa-solid fa-arrow-rotate-left"></i></button>
+                        </form>
+                    </td>
                     <td>
                         {{-- mettere bottoni --}}
                     </td>
