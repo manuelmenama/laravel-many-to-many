@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TypeController extends Controller
 {
@@ -37,7 +38,15 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate_type = $request->validate([
+            'name'=>'required|unique:types'
+        ]);
+        $slug = Str::slug($validate_type['name']);
+        $validate_type['slug'] = $slug;
+
+        Type::create($validate_type);
+
+        return redirect()->back()->with('message', "Tipo $request->name creato correttamente");
     }
 
     /**
@@ -69,9 +78,17 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Type $type)
     {
-        //
+        $validate_type = $request->validate([
+            'name'=>'required|unique:types'
+        ]);
+        $slug = Str::slug($validate_type['name']);
+        $validate_type['slug'] = $slug;
+
+        $type->update($validate_type);
+
+        return redirect()->back()->with('message', "Tipo aggiornato $request->name correttamente");
     }
 
     /**
@@ -80,8 +97,9 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Type $type)
     {
-        //
+        $type->delete();
+        return redirect()->back()->with('message', "Tipo $type->name eliminato correttamente");
     }
 }

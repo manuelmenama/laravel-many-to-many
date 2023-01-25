@@ -59,11 +59,13 @@
                     <td class="d-flex">
                         <a href="{{ route('admin.project.show', $project) }}" class="btn btn-primary me-2"><i class="fa-solid fa-eye"></i></a>
                         <a href="{{ route('admin.project.edit', $project) }}" class="btn btn-warning me-2"><i class="fa-solid fa-pencil"></i></a>
-                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal{{$project->id}}">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
+
                         {{-- Button delete manda questo modal --}}
-                        @include('admin.partials.confirm-delete')
+                        @include('admin.partials.confirm-delete', [
+                            'route'=>'project',
+                            'message'=>"Confermi l'eliminazione del progetto: $project->name",
+                            'entity'=>$project
+                        ])
                     </td>
                 </tr>
                 @empty
